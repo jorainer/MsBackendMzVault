@@ -9,7 +9,7 @@ Description: MsBackendMzVault provides read-only access to mass spectral librari
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Depends:
     dbplyr,
     fs
@@ -17,7 +17,7 @@ Imports:
     DBI,
     fs,
     RSQLite,
-    Spectra,
+    Spectra (>= 1.15.10),
     purrr,
     dplyr,
     stringr,

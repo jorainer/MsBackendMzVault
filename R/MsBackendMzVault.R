@@ -164,19 +164,23 @@ setMethod(`[`,
               stop("Parameters ... not supported")
             if(drop)
               stop("Parameter drop not supported")
-            i_ <- MsCoreUtils::i2index(i, length(x))
+            i <- MsCoreUtils::i2index(i, length(x))
+            extractByIndex(x, i)
+          })
+
+#' @importMethodsFrom Spectra extractByIndex
+setMethod("extractByIndex", c("MsBackendMzVault", "ANY"), function(object, i) {
             # If the spectrum is already subsetted, then subset based on
             # the currently present SpectrumId
             # (not based on a subset of the currently subsetted SpectrumIds,
             # because further filters may have shifted this)
             # Note: this clears all filtering done "softly" via SQL
-            current_ids <- get_filtered_spectrumids(x)
-            x@filters <- list(
+            current_ids <- get_filtered_spectrumids(object)
+            object@filters <- list(
               id = current_ids[i]
             )
-            x
-          })
-
+            object
+})
 
 setMethod("lengths",
           "MsBackendMzVault",
